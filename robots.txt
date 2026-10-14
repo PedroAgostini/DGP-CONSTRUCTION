@@ -1,0 +1,6 @@
+# TEST ENVIRONMENT (dgp.escolats.com.br): keep crawlers out.
+# On the final domain replace with:
+#   User-agent: *
+#   Allow: /
+User-agent: *
+Disallow: /

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-14",
+  "purpose": "Photorealistic illustrative backgrounds requested by the user. These are generated images, not photographs of DGP client projects.",
+  "images": [
+    {
+      "file": "svc-window-generated.webp",
+      "section": "Window Installation",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: standalone portrait 4:5 background photograph for the Window Installation service card of a Connecticut finish carpentry company website. Generate ONLY the photograph, never a screenshot, UI, layout or typography.\nScene: a completed real residential double-hung divided-light window in a tasteful modest New England home. Substantial white painted wood casing with crisp precise corner joints, consistent reveals, level sill/stool and properly proportioned apron; pale warm-gray wall. Professionally installed, complete, clean, no installation stickers or protective film. Soft view of green Connecticut trees outside. The entire window and trim are in the upper and middle two-thirds, some quiet plain wall near bottom for an existing HTML text overlay; do NOT draw text. Eye-level architectural photography from only slightly left of center, 50mm lens rather than ultrawide, straight corrected verticals, believable dimensions, window trim sharply resolved. Natural diffuse daylight, realistic subtle glass reflection, authentic painted wood microtexture, restrained neutral white balance and real material variation. Visually indistinguishable from a high-quality on-location architectural photograph. No CGI look, no artificial HDR, no glow, no plastic smoothness, no warped geometry, no damaged or stained paint. Absolutely no people, human figures, hands, silhouettes, portraits, statues or human reflections anywhere. No tools, ladders, dust, construction clutter, logos, branding, text or watermarks. Single full-bleed photograph, not a collage.",
+      "sourcePath": "C:\\Users\\pedroagostini_trajet\\.codex\\generated_images\\01a13bd7-5a5e-7900-935f-47c493f93ac8\\exec-f7d3cc12-c7cb-403c-91f2-9f8193500fc6.png",
+      "mode": "built-in image_gen",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 123212
+    },
+    {
+      "file": "why-finish-carpentry-generated.webp",
+      "section": "Why Homeowners Call Us First",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: standalone wide landscape 3:2 high-resolution architectural photograph for the full-width background of the Why Homeowners Call Us First section on a finish carpentry company website. Generate ONLY the photograph, no UI, no text, no layout.\nScene: a completed empty Connecticut residential sitting room, understated upper-middle-class New England transitional style. The focus is professionally finished white-painted board-and-batten wall paneling, crisp matching crown molding, broad baseboards, correctly proportioned door casing at one side, and warm natural oak floor. A large window off camera left provides soft natural afternoon side light that reveals the real joinery and molding relief without blown-out highlights. One understated oak built-in cabinet toward the far right, no furniture or accessories hiding the carpentry. Broad uninterrupted wall surface through the upper middle of the photograph leaves quiet visual room for an existing HTML heading and cards; do not create any text. Horizontal composition with 35mm tilt-shift architectural lens, eye-level camera, straight verticals and physically accurate room geometry. Impeccably clean final result, complete and ready to use, no bare framing, loose pieces or construction debris. Real painted timber with subtle grain and paint microtexture, natural oak pores and nonrepeating grain, gentle light falloff, true photographic detail and restrained contrast. Maximum visual realism, as if photographed at an actual finished home, no render or CGI look, no HDR, no glossy plastic finish, no oversaturation. Absolutely no people, human reflections, silhouettes, faces, hands, framed portraits or statues. No mailboxes, tools, ladders, dust, stains, logos, letters, captions or watermarks. One full-bleed photograph, never a collage.",
+      "sourcePath": "C:\\Users\\pedroagostini_trajet\\.codex\\generated_images\\01a13bd7-5a5e-7900-935f-47c493f93ac8\\exec-b640eade-43dc-4aa3-8cd3-07d0f73c0715.png",
+      "mode": "built-in image_gen",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 76092
+    }
+  ]
+}

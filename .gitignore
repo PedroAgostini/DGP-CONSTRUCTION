@@ -1,0 +1,31 @@
+# Public repository: keep client raw material and private links out.
+
+# Client originals and working folders
+drive-download-*.zip
+tmp/
+
+# Docs with direct links to the client's Google Drive
+PHOTO_SELECTION.md
+PHOTO_AUDIT.csv
+photo-selection.html
+docs/images/SELECTION.json
+docs/images/CREDITS.md
+docs/images/*.webp.json
+
+# Build output (regenerated for each upload)
+deploy/
+
+# Local design QA artifacts
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/live/
+.impeccable/config.local.json
+
+# System / editor
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.log

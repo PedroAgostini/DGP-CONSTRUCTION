@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:00Z",
+  "title": "Design System: DGP Construction",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Drafting Ink", "canonical": "oklch(15.9% 0.004 85)", "tonalRamp": ["#0C0B09", "#262523", "#43423F", "#62615E", "#83827F", "#A6A5A2", "#CAC9C6", "#F0EEEB"] },
+      "ink-2": { "role": "neutral", "displayName": "Graphite", "canonical": "oklch(34.5% 0.011 92)", "tonalRamp": ["#0D0B07", "#27251F", "#44423C", "#63615B", "#84827B", "#A7A59E", "#CBC9C2", "#F1EEE7"] },
+      "ink-3": { "role": "neutral", "displayName": "Pencil", "canonical": "oklch(51.4% 0.013 90)", "tonalRamp": ["#0D0B06", "#27251E", "#45423A", "#646159", "#85827A", "#A8A59C", "#CCC9C0", "#F2EEE5"] },
+      "line": { "role": "neutral", "displayName": "Rule Gray", "canonical": "oklch(86.7% 0.013 92)", "tonalRamp": ["#0D0B06", "#27251E", "#44423A", "#646159", "#85827A", "#A8A59C", "#CCC9C0", "#F1EEE5"] },
+      "paper": { "role": "neutral", "displayName": "Vellum", "canonical": "oklch(98.4% 0.004 106)", "tonalRamp": ["#0B0B09", "#252523", "#424240", "#61615F", "#828280", "#A5A5A2", "#C9C9C6", "#EFEFEC"] },
+      "white": { "role": "neutral", "displayName": "Sheet White", "canonical": "oklch(100% 0 0)", "tonalRamp": ["#0B0B0B", "#252525", "#424242", "#616161", "#828282", "#A5A5A5", "#C9C9C9", "#EEEEEE"] },
+      "gold": { "role": "primary", "displayName": "Redline Gold", "canonical": "oklch(75.0% 0.149 79)", "tonalRamp": ["#2A1A00", "#4A2E00", "#6B4400", "#865100", "#B8720F", "#E0A11F", "#F5C23E", "#FBE9BE"] },
+      "gold-hi": { "role": "primary", "displayName": "Lit Gold", "canonical": "oklch(83.8% 0.152 87)", "tonalRamp": ["#2A1A00", "#4A2E00", "#6B4400", "#865100", "#B8720F", "#E0A11F", "#F5C23E", "#FBE9BE"] },
+      "gold-lo": { "role": "primary", "displayName": "Burnt Gold", "canonical": "oklch(61.4% 0.132 67)", "tonalRamp": ["#2A1A00", "#4A2E00", "#6B4400", "#865100", "#B8720F", "#E0A11F", "#F5C23E", "#FBE9BE"] },
+      "gold-ink": { "role": "primary", "displayName": "Gold Ink", "canonical": "oklch(48.5% 0.107 67)", "tonalRamp": ["#2A1A00", "#4A2E00", "#6B4400", "#865100", "#B8720F", "#E0A11F", "#F5C23E", "#FBE9BE"] },
+      "gold-soft": { "role": "primary", "displayName": "Gold Wash", "canonical": "rgba(224, 161, 31, .2)" },
+      "paper-2": { "role": "neutral", "displayName": "Vellum Shade", "canonical": "oklch(87.3% 0.014 89)", "tonalRamp": ["#0E0B05", "#28251D", "#45423A", "#646158", "#868279", "#A9A59B", "#CDC9BF", "#F2EEE4"] },
+      "paper-3": { "role": "neutral", "displayName": "Vellum Pencil", "canonical": "oklch(66.1% 0.013 85)", "tonalRamp": ["#0E0B06", "#28251E", "#45423B", "#646159", "#86827A", "#A9A59C", "#CDC9C0", "#F2EEE5"] },
+      "error": { "role": "tertiary", "displayName": "Error Red", "canonical": "oklch(50.1% 0.178 29)", "tonalRamp": ["#3A0A07", "#5E130E", "#851C15", "#B3261E", "#D4574D", "#E8877F", "#F4B6B1", "#FBE2E0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The H1 only. Archivo 800 at width 125, sentence case, about 13ch." },
+      "headline": { "displayName": "Headline", "purpose": "Section H2s, sentence case, 13 to 18ch." },
+      "title": { "displayName": "Title", "purpose": "H3s for schedule items and process steps." },
+      "body": { "displayName": "Body", "purpose": "Running copy at 44 to 68ch." },
+      "button": { "displayName": "Button", "purpose": "Uppercase button labels and the mobile quote cell." },
+      "label": { "displayName": "Sheet Label", "purpose": "Martian Mono uppercase: title-block terms, schedule heads and marks, footer column titles, form meta." },
+      "data": { "displayName": "Sheet Data", "purpose": "Martian Mono captions, scope lines, file lists, phone number; in SVG the dimension and redline text at 11.5px with a paper halo." }
+    },
+    "shadows": [
+      { "name": "focus-halo", "value": "0 0 0 4px rgba(224, 161, 31, .2)", "purpose": "Field focus only, paired with an ink border. Not elevation; the system has no drop shadows." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Every state transition and the drafting reveal." },
+      { "name": "draft-stroke", "value": "stroke-dashoffset 1.3s cubic-bezier(.16, 1, .3, 1), 70ms stagger per line", "purpose": "Signature drafting reveal on paths with pathLength=1; opt-in via the js-draft root class, skipped under prefers-reduced-motion, 3s failsafe." },
+      { "name": "draft-annotations", "value": "opacity .6s ease-out after linework (about lines x 70ms + 400ms, capped at 2.2s)", "purpose": "Dimension text, ticks and fades snap in after the drawing is drafted." },
+      { "name": "state", "value": ".2s to .3s", "purpose": "Button fills, row activation, nav underline, chip washes." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "1080px" },
+      { "name": "sm", "value": "900px" },
+      { "name": "xs", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gold Button",
+      "kind": "button",
+      "refersTo": "button-gold",
+      "description": "The quote action. Redline Gold fill, square, uppercase expanded label, arrow slides on hover.",
+      "html": "<a class=\"ds-btn ds-btn-gold\" href=\"#\">Get your 24-hour quote <svg class=\"ds-ico\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h11M11 5l5 5-5 5\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: .65em; min-height: 52px; padding: .9em 1.35em; border: 1.5px solid #0E0D0B; border-radius: 0; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: .86rem; font-weight: 700; font-stretch: 118%; letter-spacing: .06em; text-transform: uppercase; line-height: 1.1; text-decoration: none; cursor: pointer; transition: background-color .2s cubic-bezier(.16,1,.3,1), color .2s cubic-bezier(.16,1,.3,1), transform .2s cubic-bezier(.16,1,.3,1); } .ds-ico { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: square; stroke-linejoin: miter; transition: transform .3s cubic-bezier(.16,1,.3,1); } .ds-btn:hover .ds-ico { transform: translateX(3px); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid #0E0D0B; outline-offset: 3px; } .ds-btn-gold { background: #E0A11F; color: #0E0D0B; } .ds-btn-gold:hover { background: #F5C23E; }"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Secondary solid action on paper.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">Reach out to our team</a>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; min-height: 52px; padding: .9em 1.35em; border: 1.5px solid #0E0D0B; border-radius: 0; background: #0E0D0B; color: #FAFAF7; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: .86rem; font-weight: 700; font-stretch: 118%; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background-color .2s cubic-bezier(.16,1,.3,1); } .ds-btn-ink:hover { background: #3B3933; } .ds-btn-ink:focus-visible { outline: 2px solid #0E0D0B; outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Outlined alternative action (Text us photos); fills ink on hover.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">Text us photos</a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; min-height: 52px; padding: .9em 1.35em; border: 1.5px solid #0E0D0B; border-radius: 0; background: transparent; color: #0E0D0B; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: .86rem; font-weight: 700; font-stretch: 118%; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background-color .2s cubic-bezier(.16,1,.3,1), color .2s cubic-bezier(.16,1,.3,1); } .ds-btn-line:hover { background: #0E0D0B; color: #FAFAF7; } .ds-btn-line:focus-visible { outline: 2px solid #0E0D0B; outline-offset: 3px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square white field; focus goes ink with a gold wash halo.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-f\">Phone</label><input id=\"ds-f\" type=\"tel\" placeholder=\"(203) 555-0123\"></div>",
+      "css": ".ds-field label { display: block; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: .88rem; font-weight: 700; font-stretch: 105%; margin-bottom: 8px; color: #0E0D0B; } .ds-field input { width: 100%; min-height: 52px; padding: 13px 14px; background: #FFFFFF; border: 1.5px solid #6A675F; border-radius: 0; font: inherit; font-size: 1rem; color: #0E0D0B; transition: border-color .2s, box-shadow .2s; } .ds-field input:hover { border-color: #3B3933; } .ds-field input:focus { outline: none; border-color: #0E0D0B; box-shadow: 0 0 0 4px rgba(224,161,31,.2); }"
+    },
+    {
+      "name": "Schedule Mark",
+      "kind": "chip",
+      "refersTo": "mark-chip",
+      "description": "Finish schedule mark in a ruled mono box; the active mark fills gold.",
+      "html": "<span class=\"ds-mark\">TR-1</span> <span class=\"ds-mark is-active\">WN-1</span>",
+      "css": ".ds-mark { display: inline-block; font-family: 'Martian Mono', ui-monospace, Menlo, monospace; font-stretch: 87.5%; font-size: .74rem; font-weight: 700; letter-spacing: .04em; line-height: 1; padding: 6px 9px; border: 1.5px solid #0E0D0B; color: #0E0D0B; transition: background-color .3s cubic-bezier(.16,1,.3,1); } .ds-mark:hover, .ds-mark.is-active { background: #E0A11F; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky paper header with a 1.5px ink rule; links draw a gold underline on hover; phone in mono.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Services</a><a href=\"#\">Process</a><a href=\"#\">FAQ</a><a class=\"ds-nav-phone\" href=\"#\">(914) 538-0739</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 28px; padding: 20px 0; background: #FAFAF7; border-bottom: 1.5px solid #0E0D0B; } .ds-nav a { color: #0E0D0B; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: .92rem; font-weight: 600; font-stretch: 108%; text-decoration: none; padding: 6px 0; background: linear-gradient(#E0A11F, #E0A11F) left bottom / 0 2px no-repeat; transition: background-size .3s cubic-bezier(.16,1,.3,1); } .ds-nav a:hover { background-size: 100% 2px; } .ds-nav a:focus-visible { outline: 2px solid #0E0D0B; outline-offset: 3px; } .ds-nav .ds-nav-phone { font-family: 'Martian Mono', ui-monospace, Menlo, monospace; font-stretch: 87.5%; font-size: .8rem; font-weight: 500; }"
+    },
+    {
+      "name": "Title Block",
+      "kind": "custom",
+      "refersTo": "title-block-cell",
+      "description": "Shop drawing title block: ruled mono-term cells, closing in a black due cell ringed by a gold revision cloud.",
+      "html": "<dl class=\"ds-tb\"><div><dt>Project</dt><dd>Your home</dd></div><div><dt>Area</dt><dd>Danbury, CT + 30 mi</dd></div><div class=\"ds-tb-due\"><dt>Quote due</dt><dd>24 hrs<svg viewBox=\"0 0 220 72\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M210 36A6.6 6.6 0 0 1 204 45.6A11.2 11.2 0 0 1 186.6 54A15.9 15.9 0 0 1 160 60.2A19 19 0 0 1 127.4 63.6A20.1 20.1 0 0 1 92.6 63.6A19 19 0 0 1 60 60.2A15.9 15.9 0 0 1 33.4 54A11.2 11.2 0 0 1 16 45.6A6.6 6.6 0 0 1 10 36A6.6 6.6 0 0 1 16 26.4A11.2 11.2 0 0 1 33.4 18A15.9 15.9 0 0 1 60 11.8A19 19 0 0 1 92.6 8.4A20.1 20.1 0 0 1 127.4 8.4A19 19 0 0 1 160 11.8A15.9 15.9 0 0 1 186.6 18A11.2 11.2 0 0 1 204 26.4A6.6 6.6 0 0 1 210 36\"/></svg></dd></div></dl>",
+      "css": ".ds-tb { display: grid; grid-template-columns: 1fr 1fr 1.25fr; margin: 0; border: 1.5px solid #0E0D0B; background: #FFFFFF; color: #0E0D0B; } .ds-tb > div { padding: 14px 18px 16px; border-left: 1px solid #0E0D0B; } .ds-tb > div:first-child { border-left: 0; } .ds-tb dt { font-family: 'Martian Mono', ui-monospace, Menlo, monospace; font-stretch: 87.5%; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: #6A675F; margin-bottom: 4px; } .ds-tb dd { margin: 0; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 1rem; line-height: 1.25; } .ds-tb-due { background: #0E0D0B; } .ds-tb-due dt { color: #E0A11F; margin-bottom: 12px; } .ds-tb-due dd { position: relative; display: inline-block; font-size: 1.6rem; font-weight: 800; font-stretch: 125%; color: #E0A11F; padding: 2px 14px; margin-left: -6px; } .ds-tb-due svg { position: absolute; inset: -5px -16px; width: calc(100% + 32px); height: calc(100% + 10px); overflow: visible; } .ds-tb-due path { fill: none; stroke: #E0A11F; stroke-width: 2; vector-effect: non-scaling-stroke; }"
+    },
+    {
+      "name": "Detail Bubble Caption",
+      "kind": "custom",
+      "refersTo": "bubble",
+      "description": "Drawing caption: a drafting bubble (ink or gold) with a mono caption whose lead is uppercase ink.",
+      "html": "<figcaption class=\"ds-cap\"><span class=\"ds-bubble\">A</span><span><strong>Typical job</strong><br>Gap, caulk, mismatch</span></figcaption><figcaption class=\"ds-cap\"><span class=\"ds-bubble ds-bubble-gold\">B</span><span><strong>DGP job</strong><br>Tight, flush, even</span></figcaption>",
+      "css": ".ds-cap { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; font-family: 'Martian Mono', ui-monospace, Menlo, monospace; font-stretch: 87.5%; font-size: .78rem; line-height: 1.45; letter-spacing: .02em; color: #6A675F; } .ds-cap strong { color: #0E0D0B; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; } .ds-bubble { display: inline-grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #0E0D0B; color: #0E0D0B; font-size: .78rem; font-weight: 700; line-height: 1; } .ds-bubble-gold { background: #E0A11F; border-color: #E0A11F; }"
+    },
+    {
+      "name": "General Note",
+      "kind": "custom",
+      "refersTo": "notes",
+      "description": "Numbered general note on a black sheet: gold-outlined number circle, expanded heavy lead, Vellum Shade body.",
+      "html": "<ol class=\"ds-notes\"><li><div><strong>Guaranteed 24-hour quote.</strong> Send photos or rough measurements. An itemized estimate comes back within 24 hours.</div></li></ol>",
+      "css": ".ds-notes { counter-reset: note; list-style: none; margin: 0; padding: 0 24px; background: #0E0D0B; border-top: 1px solid rgba(250,250,247,.22); } .ds-notes li { counter-increment: note; display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(250,250,247,.22); color: #D9D5CB; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; } .ds-notes li::before { content: counter(note); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #E0A11F; color: #E0A11F; font-family: 'Martian Mono', ui-monospace, Menlo, monospace; font-stretch: 87.5%; font-size: .8rem; font-weight: 700; } .ds-notes strong { display: block; color: #FAFAF7; font-weight: 800; font-stretch: 115%; font-size: 1.15rem; margin-bottom: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shop Drawing",
+    "overview": "Every section is a sheet from a millwork shop drawing set. Black linework is ruled on near-white paper, the logo gold works the way a drafter's redline does (revision clouds, callouts, the one mark that says \"this changed, look here\"), and black sheets carry the general notes, the offer and the footer. Precision is shown before it is claimed: dimension strings in fractions of an inch, detail bubbles, a finish schedule with marks, a title block, a site plan for the service radius.\n\nThe density is that of a well-drawn sheet: generous margins, hard 1.5px ink rules between zones, small mono data set against heavy expanded headings. Nothing floats; everything is either ruled onto the sheet or laid on it as a second white sheet with an ink border. Motion belongs to the drawing itself: lines draft in, then the dimension text and redline snap in.\n\nThe world rejects the category default for contractors: a dark photo hero, a badge strip and a grid of rounded cards with soft shadows.",
+    "keyCharacteristics": [
+      "Near-white paper sheets ruled with 1.5px ink lines; black sheets for notes, offer and footer.",
+      "Logo gold as redline: revision clouds, callouts, active marks, the primary action.",
+      "Archivo expanded heavy (width 125, weight 800) for headings, echoing the DGP letterforms.",
+      "Martian Mono strictly for measurements, marks and sheet data.",
+      "Square corners everywhere; circles only for drawing bubbles.",
+      "Flat: depth is drawn with line weight, never with shadow.",
+      "One signature motion: the drawing drafts itself."
+    ],
+    "rules": [
+      { "name": "The Redline Rule", "body": "Gold marks what matters, the way a redline does on a drawing: the primary action, the revision cloud, the active item. If gold appears on something that is not an action, an active state or an annotation, it is decoration and does not belong.", "section": "colors" },
+      { "name": "The Gold Ink Rule", "body": "Gold text on paper or white is always Gold Ink, never Redline Gold. Redline Gold as text is legal only on Drafting Ink.", "section": "colors" },
+      { "name": "The Mono Is Measurement Rule", "body": "Martian Mono is used only for numbers, marks, captions and sheet data. Never for headings, prose or buttons.", "section": "typography" },
+      { "name": "The Sentence Case Rule", "body": "Headings are set in sentence case at full expansion. Caps belong to buttons and mono labels. (The expanded caps H1 broke the first viewport on mobile; sentence case is the recorded decision.)", "section": "typography" },
+      { "name": "The Line Weight Rule", "body": "Hierarchy in drawings and on the page comes from stroke weight and ink value, never from shadow or blur. If something needs to come forward, rule it heavier or lay it on a white sheet.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do rule sections and structure with 1.5px Drafting Ink lines, and divide rows inside a section with 1px Rule Gray.",
+      "Do use Redline Gold only for the primary action, revision clouds, redline strokes and active states.",
+      "Do set gold text on light surfaces in Gold Ink (#865100); Redline Gold text only on Drafting Ink.",
+      "Do set headings in Archivo 800 at width 125, sentence case.",
+      "Do keep Martian Mono to measurements, marks, captions and sheet data.",
+      "Do lay emphasized content on a Sheet White panel with a 1.5px ink border instead of lifting it.",
+      "Do reuse the drafting reveal (pathLength 1, dash offset, opt-in class, reduced-motion skip) for any new drawing."
+    ],
+    "donts": [
+      "Don't add drop shadows to any panel, card or button; the field focus halo is the only box-shadow.",
+      "Don't round rectangle corners; circles are only for bubbles, step discs, note numbers and the FAQ marker.",
+      "Don't use Redline Gold (#E0A11F) as text on paper or white.",
+      "Don't use Martian Mono for headings, body copy or buttons.",
+      "Don't introduce a second accent hue; the palette is ink, paper and the logo gold.",
+      "Don't hide content behind the drafting motion; the unanimated state must be complete."
+    ]
+  }
+}
