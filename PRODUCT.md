@@ -24,7 +24,7 @@ Finish carpentry specialist, not a generalist remodeler. The promise is precisio
 
 ## Operating Context
 
-Visitors arrive mostly on mobile from ads. They send photos, measurements or blueprints to get a quote. Contact channels: phone/SMS (914) 538-0739, email (placeholder info@dgpconstruction.com until the domain exists), Instagram @dgpconstruction_.
+Visitors arrive mostly on mobile from ads. They send photos, measurements or blueprints to get a quote. Contact channels: phone/SMS (914) 538-0739, email dgpconstruction25@gmail.com, Instagram @dgpconstruction_.
 
 ## Capabilities and Constraints
 

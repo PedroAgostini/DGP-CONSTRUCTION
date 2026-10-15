@@ -136,7 +136,7 @@ O `.htaccess` já cuida de:
 ## Pendências antes do lançamento
 
 - [ ] **Depoimentos reais.** Os três atuais são exemplos e estão marcados no código.
-- [ ] **E-mail definitivo.** `info@dgpconstruction.com` é provisório até o domínio existir.
+- [x] **E-mail definitivo.** `dgpconstruction25@gmail.com`.
 - [ ] **Integração do formulário.** Hoje ele só exibe a confirmação; o ponto de envio está marcado com `TODO` em `assets/js/main.js`. Campos: `service`, `town`, `message`, `name`, `phone`, `email`.
 - [ ] **Link de avaliação do Google.** O botão *Share your experience* aponta para uma busca até o Google Business Profile existir.
 - [ ] **Política de privacidade**, já que o formulário coleta dados de contato.
