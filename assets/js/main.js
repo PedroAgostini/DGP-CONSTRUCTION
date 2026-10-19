@@ -231,6 +231,43 @@
       });
     });
 
+    // ---------- phone mask: (203) 555-0123 ----------
+    var phoneInput = document.getElementById("f-phone");
+    function phoneDigits(value) {
+      var d = value.replace(/\D/g, "");
+      if (d.length > 10 && d.charAt(0) === "1") d = d.slice(1); // drop the +1 country code
+      return d.slice(0, 10);
+    }
+    function formatPhone(d) {
+      if (!d) return "";
+      if (d.length < 4) return "(" + d;
+      if (d.length < 7) return "(" + d.slice(0, 3) + ") " + d.slice(3);
+      return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
+    }
+    if (phoneInput) {
+      var lastDigits = phoneDigits(phoneInput.value);
+      form.addEventListener("reset", function () { lastDigits = ""; });
+      phoneInput.addEventListener("input", function (e) {
+        var caret = phoneInput.selectionStart || 0;
+        var digitsBeforeCaret = phoneInput.value.slice(0, caret).replace(/\D/g, "").length;
+        var d = phoneDigits(phoneInput.value);
+        // backspace over "(", ")", " " or "-" removes the digit before it instead of getting stuck
+        if (e.inputType === "deleteContentBackward" && d === lastDigits && digitsBeforeCaret > 0) {
+          d = d.slice(0, digitsBeforeCaret - 1) + d.slice(digitsBeforeCaret);
+          digitsBeforeCaret -= 1;
+        }
+        phoneInput.value = formatPhone(d);
+        lastDigits = d;
+        // put the caret back after the same number of digits
+        var pos = 0, seen = 0;
+        while (pos < phoneInput.value.length && seen < digitsBeforeCaret) {
+          if (/\d/.test(phoneInput.value.charAt(pos))) seen += 1;
+          pos += 1;
+        }
+        if (document.activeElement === phoneInput) phoneInput.setSelectionRange(pos, pos);
+      });
+    }
+
     form.querySelectorAll("input[required]:not([type=radio])").forEach(function (input) {
       input.addEventListener("blur", function () { if (input.value) check(input); });
       input.addEventListener("input", function () {
