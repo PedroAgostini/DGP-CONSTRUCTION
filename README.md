@@ -89,6 +89,7 @@ A direção é a de uma **prancha de desenho técnico de marcenaria**: linhas fi
 ├── 404.html                página de erro no mesmo visual
 ├── privacy-policy.html     política de privacidade
 ├── terms-of-use.html       termos de uso
+├── redirect/               cartão de visitas digital (/redirect) e contato .vcf
 ├── .htaccess               HTTPS sem www, cache, segurança, anti-spam, 404
 ├── robots.txt              libera indexação e aponta o sitemap
 ├── sitemap.xml             as três páginas públicas

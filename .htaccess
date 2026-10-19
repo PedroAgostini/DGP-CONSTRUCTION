@@ -49,6 +49,7 @@ ErrorDocument 404 /404.html
   AddType image/x-icon .ico
   AddType application/manifest+json .webmanifest
   AddType application/xml .xml
+  AddType text/vcard .vcf
   AddCharset utf-8 .html .css .js .txt .xml .webmanifest
 </IfModule>
 

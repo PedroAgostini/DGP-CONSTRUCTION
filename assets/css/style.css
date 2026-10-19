@@ -667,3 +667,38 @@ h3 { font-weight: 800; font-stretch: 118%; font-size: clamp(1.2rem, 1rem + .6vw,
 .form-error { margin: 14px 0 0; padding: 12px 14px; border: 1.5px solid var(--error); color: var(--error); font-size: .9rem; font-weight: 600; line-height: 1.45; }
 .form-error[hidden] { display: none; }
 .form-error a { color: var(--error); }
+
+/* ---------- contact card (/redirect) ---------- */
+.card-page { min-height: 100dvh; background-color: var(--ink); color: var(--paper); }
+.card-bg { position: fixed; inset: 0; z-index: 0; }
+.card-bg img { width: 100%; height: 100%; object-fit: cover; }
+.card-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 13, 11, .78) 0%, rgba(14, 13, 11, .86) 50%, rgba(14, 13, 11, .94) 100%); }
+.vcard { position: relative; z-index: 1; min-height: 100dvh; display: grid; place-content: center; justify-items: center; gap: 20px; padding: clamp(24px, 6vh, 48px) 20px 32px; }
+.vcard-sheet { position: relative; width: min(440px, calc(100vw - 40px)); padding: 32px 24px 24px; background: rgba(14, 13, 11, .72); backdrop-filter: blur(8px); }
+.vcard-sheet .t-v, .vcard-sheet .t-h { background: rgba(250, 250, 247, .24); }
+.vcard-sheet .t-decor { fill: var(--paper-3); }
+.vcard-head { text-align: center; margin-bottom: 24px; }
+.vcard-logo { width: 200px; margin: 4px auto 0; }
+.vcard-head h1 { font-size: 1.35rem; font-stretch: 118%; line-height: 1.15; color: var(--paper); }
+.vcard-head p { margin: 10px 0 0; font-size: .92rem; line-height: 1.5; color: var(--paper-2); }
+.vcard-links { display: grid; gap: 10px; }
+.vlink { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 10px 14px; border: 1px solid rgba(250, 250, 247, .22); color: var(--paper); text-decoration: none; transition: border-color .2s, background-color .2s; }
+.vlink:hover { border-color: var(--gold); background: rgba(224, 161, 31, .08); }
+.vlink:active { transform: translateY(1px); }
+.vlink > .ico { margin-left: auto; color: var(--paper-3); transition: transform .3s var(--ease-out), color .2s; }
+.vlink:hover > .ico { transform: translateX(3px); color: var(--gold); }
+.vlink-ico { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border: 1px solid rgba(250, 250, 247, .22); color: var(--gold); }
+.vlink-ico .ico { width: 20px; height: 20px; }
+.vlink-text { display: grid; min-width: 0; }
+.vlink-text strong { font-weight: 700; font-stretch: 112%; font-size: 1rem; line-height: 1.2; }
+.vlink-text span { font-size: .85rem; color: var(--paper-2); overflow-wrap: anywhere; }
+.vlink-primary { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.vlink-primary:hover { background: var(--gold-hi); border-color: var(--gold-hi); }
+.vlink-primary .vlink-ico { border-color: rgba(14, 13, 11, .35); color: var(--ink); }
+.vlink-primary .vlink-text span { color: var(--ink-2); }
+.vlink-primary > .ico, .vlink-primary:hover > .ico { color: var(--ink); }
+.vcard-save { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: 16px; border: 1px dashed rgba(250, 250, 247, .4); color: var(--paper); text-decoration: none; font-weight: 700; font-stretch: 112%; text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; transition: border-color .2s, color .2s; }
+.vcard-save:hover { border-color: var(--gold); color: var(--gold); }
+.vcard-foot { margin: 0; font-size: .8rem; color: var(--paper-3); }
+.card-page :focus-visible { outline-color: var(--gold); }
+@media (max-width: 400px) { .vlink > .ico { display: none; } }
