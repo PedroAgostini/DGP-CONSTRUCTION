@@ -1,6 +1,6 @@
-# TEST ENVIRONMENT (dgp.escolats.com.br): keep crawlers out.
-# On the final domain replace with:
-#   User-agent: *
-#   Allow: /
+# DGP Construction | https://dgpconstructionusa.com
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://dgpconstructionusa.com/sitemap.xml

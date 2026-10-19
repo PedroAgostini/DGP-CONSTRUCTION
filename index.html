@@ -6,14 +6,24 @@
   <title>Finish Carpentry & Trim Work in Danbury, CT | DGP Construction</title>
   <meta name="description" content="Licensed and insured finish carpentry in Danbury, CT. Custom trim, window installation, decks, cabinet installation and remodeling. Itemized quote within 24 hours.">
   <meta name="theme-color" content="#0E0D0B">
-  <link rel="icon" href="assets/img/favicon.webp" type="image/webp">
-  <link rel="apple-touch-icon" href="assets/img/DGP-LOGO.webp">
+  <link rel="canonical" href="https://dgpconstructionusa.com/">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DGP Construction">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://dgpconstructionusa.com/">
   <meta property="og:title" content="DGP Construction | Finish Carpentry & Trim in Danbury, CT">
   <meta property="og:description" content="Custom trim, windows, decks and cabinets. Send photos, get an itemized quote within 24 hours.">
-  <meta property="og:image" content="assets/img/dgp-timber-pavilion.webp">
+  <meta property="og:image" content="https://dgpconstructionusa.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DGP Construction logo over a finished timber pavilion">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dgpconstructionusa.com/assets/img/og-image.jpg">
 
   <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/dgp-timber-pavilion.webp" as="image" fetchpriority="high">
@@ -29,10 +39,13 @@
   {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
+    "@id": "https://dgpconstructionusa.com/#business",
     "name": "DGP Construction LLC",
+    "url": "https://dgpconstructionusa.com/",
+    "logo": "https://dgpconstructionusa.com/assets/icons/icon-512.png",
     "telephone": "+1-914-538-0739",
     "email": "dgpconstruction25@gmail.com",
-    "image": "assets/img/DGP-LOGO.webp",
+    "image": "https://dgpconstructionusa.com/assets/img/og-image.jpg",
     "address": { "@type": "PostalAddress", "addressLocality": "Danbury", "addressRegion": "CT", "addressCountry": "US" },
     "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 41.3948, "longitude": -73.454 }, "geoRadius": "48280" },
     "sameAs": ["https://www.instagram.com/dgpconstruction_/"],
@@ -516,7 +529,7 @@
           Set the form "action" (Formspree, PHP, CRM webhook) and remove the
           success simulation in assets/js/main.js.
         -->
-        <form class="quote-form" id="quote-form" novalidate>
+        <form class="quote-form" id="quote-form" data-form-id="form01" novalidate>
           <div class="form-head">
             <p class="form-title">Quote request</p>
             <p class="form-meta" id="step-count" aria-live="polite">Step 1 of 3</p>
@@ -574,12 +587,20 @@
             </div>
           </fieldset>
 
+          <!-- anti-spam: people never see this field; bots fill it in -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="form_started" id="f-started" value="">
+
           <div class="form-nav">
             <button class="btn btn-line form-back" type="button" hidden>Back</button>
             <button class="btn btn-gold form-next" type="button"><span>Next</span><svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
             <button class="btn btn-gold form-submit" type="submit" hidden><span class="btn-label">Send for my 24-hour quote</span><svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
           </div>
-          <p class="form-fine">We only use your details to prepare your quote.</p>
+          <p class="form-error" id="form-error" role="alert" tabindex="-1" hidden>We couldn't send your request. Check your connection and try again, or text us at <a href="sms:+19145380739">(914) 538-0739</a>.</p>
+          <p class="form-fine">By sending this form you agree to be contacted by text, phone or email about your quote. Message and data rates may apply. Reply STOP to opt out. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
           <div class="form-done" id="form-done" tabindex="-1" hidden>
             <svg class="done-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 25l10 10 22-22"/></svg>
@@ -637,6 +658,10 @@
       </div>
       <div class="f-bottom">
         <p>&copy; <span id="year">2026</span> DGP Construction LLC. All rights reserved.</p>
+        <ul class="f-legal">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-use.html">Terms of Use</a></li>
+        </ul>
         <p class="f-credit">Developed by <a href="https://eusouts.com.br/" target="_blank" rel="noopener">Eu Sou TS</a></p>
       </div>
     </div>
@@ -665,6 +690,7 @@
     <symbol id="stars5" viewBox="0 0 100 20"><use href="#star" x="0" width="18" height="18" y="1"/><use href="#star" x="20" width="18" height="18" y="1"/><use href="#star" x="40" width="18" height="18" y="1"/><use href="#star" x="60" width="18" height="18" y="1"/><use href="#star" x="80" width="18" height="18" y="1"/></symbol>
   </svg>
 
+  <script src="assets/js/config.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

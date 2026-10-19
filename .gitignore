@@ -29,3 +29,9 @@ Thumbs.db
 desktop.ini
 .vscode/
 *.log
+
+# Form credentials (Web3Forms key, lead webhook). Only config.example.js is public.
+assets/js/config.js
+
+# Working copy of the private production repository
+prod-repo/

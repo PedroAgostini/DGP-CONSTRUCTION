@@ -91,6 +91,99 @@
     var submit = form.querySelector(".form-submit");
     var current = 0;
 
+    // anti-spam: a filled honeypot or a form finished faster than a person can read it is treated as a bot
+    var startedAt = Date.now();
+    var startedField = document.getElementById("f-started");
+    if (startedField) startedField.value = String(startedAt);
+    function isSpam() {
+      var trap = form.querySelector("input[name=company]");
+      return (trap && trap.value.trim() !== "") || Date.now() - startedAt < 4000;
+    }
+
+    // ---------- lead delivery ----------
+    // Each lead goes to Web3Forms (email to the client) and to the Eu Sou TS lead webhook, in parallel.
+    // The visitor sees the confirmation if at least one of them accepts the lead.
+    // credentials live in assets/js/config.js (see config.example.js)
+    var CFG = window.DGP_FORM || {};
+    var FORM_ID = form.getAttribute("data-form-id") || CFG.formId || "form01";
+    var WEB3FORMS_URL = "https://api.web3forms.com/submit";
+    var WEB3FORMS_KEY = CFG.web3formsKey || "";
+    var WEBHOOK_URL = CFG.webhookUrl || "";
+    var SEND_TIMEOUT = 15000;
+
+    // ad attribution carried over from the landing URL (Google Ads, Meta Ads)
+    var tracking = {};
+    try {
+      var query = new URLSearchParams(window.location.search);
+      ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"].forEach(function (k) {
+        var v = query.get(k);
+        if (v) tracking[k] = v.slice(0, 200);
+      });
+    } catch (err) { /* old browser: send without attribution */ }
+
+    function leadData() {
+      var fd = new FormData(form);
+      var val = function (k) { return String(fd.get(k) || "").trim(); };
+      var lead = {
+        form_id: FORM_ID,
+        service: val("service"),
+        name: val("name"),
+        phone: val("phone"),
+        email: val("email"),
+        town: val("town"),
+        message: val("message"),
+        page: window.location.href.split("#")[0],
+        referrer: document.referrer || "",
+        submitted_at: new Date().toISOString(),
+        form_started: val("form_started"),
+        elapsed_ms: String(Date.now() - startedAt)
+      };
+      Object.keys(tracking).forEach(function (k) { lead[k] = tracking[k]; });
+      return lead;
+    }
+
+    function timed(url, options) {
+      var ctrl = "AbortController" in window ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, SEND_TIMEOUT) : null;
+      if (ctrl) options.signal = ctrl.signal;
+      return fetch(url, options).then(function (res) { clearTimeout(timer); return res; }, function (err) { clearTimeout(timer); throw err; });
+    }
+
+    function sendWebhook(lead) {
+      if (!WEBHOOK_URL) return Promise.reject(new Error("webhook not configured"));
+      return timed(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead)
+      }).then(function (res) { if (!res.ok) throw new Error("webhook " + res.status); });
+    }
+
+    function sendWeb3Forms(lead) {
+      if (!WEB3FORMS_KEY) return Promise.reject(new Error("web3forms not configured"));
+      // FormData keeps this a simple request (no CORS preflight)
+      var fd = new FormData();
+      fd.append("access_key", WEB3FORMS_KEY);
+      fd.append("subject", "New quote request: " + (lead.service || "Website") + " | " + lead.name);
+      fd.append("from_name", "DGP Construction website");
+      fd.append("replyto", lead.email);
+      Object.keys(lead).forEach(function (k) { fd.append(k, lead[k]); });
+      return timed(WEB3FORMS_URL, { method: "POST", headers: { Accept: "application/json" }, body: fd })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok || data.success === false) throw new Error("web3forms " + res.status);
+          });
+        });
+    }
+
+    function trackConversion() {
+      // fires only if the Google tag or the Meta Pixel are installed later
+      try {
+        if (window.dataLayer && window.dataLayer.push) window.dataLayer.push({ event: "generate_lead", form_id: FORM_ID });
+        if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { form_id: FORM_ID });
+        if (typeof window.fbq === "function") window.fbq("track", "Lead");
+      } catch (err) { /* tracking must never break the form */ }
+    }
+
     function show(i) {
       current = i;
       steps.forEach(function (s, k) {
@@ -151,24 +244,42 @@
       if (current < steps.length - 1) { goNext(); return; }
       if (!stepValid(current)) return;
 
+      // bots get the success screen and nothing is sent.
+      // The lead endpoint must repeat both checks server side: company empty, now - form_started >= 4000 ms.
+      if (isSpam()) {
+        var fake = document.getElementById("form-done");
+        fake.hidden = false;
+        fake.focus();
+        return;
+      }
+
       var label = submit.querySelector(".btn-label");
       submit.disabled = true;
       submit.classList.add("is-loading");
       label.textContent = "Sending your request";
 
-      /*
-        TODO (integration): send FormData(form) to the lead endpoint here,
-        e.g. fetch(form.action, { method: "POST", body: new FormData(form) }).
-        The timeout below only simulates the success state.
-      */
-      setTimeout(function () {
-        var done = document.getElementById("form-done");
-        done.hidden = false;
-        done.focus();
+      var errorBox = document.getElementById("form-error");
+      if (errorBox) errorBox.hidden = true;
+      var lead = leadData();
+      var ok = function () { return true; };
+      var failed = function () { return false; };
+
+      Promise.all([sendWeb3Forms(lead).then(ok, failed), sendWebhook(lead).then(ok, failed)]).then(function (results) {
         submit.disabled = false;
         submit.classList.remove("is-loading");
         label.textContent = "Send for my 24-hour quote";
-      }, 900);
+        if (results[0] || results[1]) {
+          trackConversion();
+          var done = document.getElementById("form-done");
+          done.hidden = false;
+          done.focus();
+          form.reset();
+          if (startedField) startedField.value = String(startedAt);
+        } else if (errorBox) {
+          errorBox.hidden = false;
+          errorBox.focus();
+        }
+      });
     });
   }
 

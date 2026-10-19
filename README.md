@@ -9,14 +9,14 @@
 
 Site institucional one page da **DGP Construction LLC**, feito para transformar tráfego pago em pedidos de orçamento.
 
-[![Status](https://img.shields.io/badge/status-ambiente%20de%20teste-E0A11F?style=flat-square)](https://dgp.escolats.com.br)
+[![Status](https://img.shields.io/badge/status-pronto%20para%20produ%C3%A7%C3%A3o-E0A11F?style=flat-square)](https://dgpconstructionusa.com)
 ![HTML5](https://img.shields.io/badge/HTML5-0E0D0B?style=flat-square&logo=html5&logoColor=E0A11F)
 ![CSS3](https://img.shields.io/badge/CSS3-0E0D0B?style=flat-square&logo=css3&logoColor=E0A11F)
 ![JavaScript](https://img.shields.io/badge/JavaScript-0E0D0B?style=flat-square&logo=javascript&logoColor=E0A11F)
 ![Hostinger](https://img.shields.io/badge/deploy-Hostinger-0E0D0B?style=flat-square&logo=hostinger&logoColor=E0A11F)
 ![Sem build](https://img.shields.io/badge/build-nenhum-3B3933?style=flat-square)
 
-**[dgp.escolats.com.br](https://dgp.escolats.com.br)** (ambiente de teste)
+**[dgpconstructionusa.com](https://dgpconstructionusa.com)**
 
 </div>
 
@@ -87,13 +87,22 @@ A direção é a de uma **prancha de desenho técnico de marcenaria**: linhas fi
 .
 ├── index.html              página única
 ├── 404.html                página de erro no mesmo visual
-├── .htaccess               HTTPS, cache, segurança, 404 (Apache/Hostinger)
-├── robots.txt              bloqueia indexação no ambiente de teste
+├── privacy-policy.html     política de privacidade
+├── terms-of-use.html       termos de uso
+├── .htaccess               HTTPS sem www, cache, segurança, anti-spam, 404
+├── robots.txt              libera indexação e aponta o sitemap
+├── sitemap.xml             as três páginas públicas
+├── site.webmanifest        nome, cores e ícones para instalar no celular
+├── favicon.ico             16, 32 e 48 px
+├── apple-touch-icon.png    ícone da tela inicial do iPhone (180 px)
+├── humans.txt              quem fez o site
+├── llms.txt                resumo do negócio para ferramentas de IA
 ├── assets/
 │   ├── css/style.css       todos os estilos, tokens no :root
 │   ├── js/main.js          menu, desenho animado, formulário em etapas
 │   ├── fonts/              Archivo e Martian Mono (woff2, latin)
-│   └── img/                logos, favicon, fotos reais e 2 imagens geradas
+│   ├── icons/              favicon.svg e ícones 192, 512 e maskable
+│   └── img/                logos, fotos reais, 2 imagens geradas e og-image.jpg
 ├── docs/
 │   ├── images/GENERATED.json   registro das imagens geradas
 │   └── readme/                 capturas usadas neste README
@@ -113,34 +122,37 @@ python -m http.server 8000
 
 Abrir o `index.html` direto no navegador também funciona, mas a página 404 e os caminhos absolutos dela só respondem através de um servidor.
 
-## Deploy no ambiente de teste
+## Publicação (Hostinger)
 
-1. No gerenciador de arquivos da Hostinger, abra a pasta do subdomínio `dgp.escolats.com.br`.
-2. Envie `index.html`, `404.html`, `.htaccess`, `robots.txt` e a pasta `assets/` inteira.
-3. Confira se o SSL do subdomínio está ativo. O `.htaccess` força HTTPS.
+Domínio: **https://dgpconstructionusa.com**
 
-O `.htaccess` já cuida de:
+1. Use o zip de produção em `deploy/` (fica fora do git) ou envie os arquivos da lista abaixo.
+2. No gerenciador de arquivos da Hostinger, abra a `public_html` do domínio e envie o conteúdo do pacote.
+3. Ative o SSL do domínio. O `.htaccess` força HTTPS e leva `www` para o endereço sem `www`.
+4. No Google Search Console, adicione o domínio e envie `https://dgpconstructionusa.com/sitemap.xml`.
 
-- redirecionar tudo para HTTPS e `/index.html` para `/`;
-- servir a página 404 personalizada e bloquear listagem de pastas;
-- bloquear arquivos ocultos e de projeto (`.md`, `.json`), deixando `/.well-known` livre para o certificado;
-- compressão gzip, cabeçalhos de segurança e cache longo para fontes e imagens;
-- `noindex` no ambiente de teste.
+**Vai para o servidor:** `index.html`, `404.html`, `privacy-policy.html`, `terms-of-use.html`, `.htaccess`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `favicon.ico`, `apple-touch-icon.png`, `humans.txt`, `llms.txt` e a pasta `assets/`.
 
-### Antes de ir para o domínio final
+O `.htaccess` cuida de:
 
-- [ ] Remover o bloco **TEST ENVIRONMENT** do `.htaccess`.
-- [ ] Liberar a indexação no `robots.txt`.
-- [ ] Trocar o `og:image` por uma URL absoluta do domínio final.
+- um único endereço canônico: HTTPS, sem `www`, e `/index.html` redirecionado para `/`;
+- página 404 personalizada e bloqueio de listagem de pastas;
+- bloqueio de arquivos ocultos e de projeto (`.md`, `.json`, `.csv`), deixando `/.well-known` livre para o certificado;
+- anti-spam: bloqueia tentativas em `wp-login` e `xmlrpc` e requisições sem user agent;
+- compressão gzip, cabeçalhos de segurança e cache longo para fontes, ícones e imagens.
+
+### Anti-spam do formulário
+
+O formulário tem um campo isca (`company`) invisível para pessoas e registra quando a página abriu (`form_started`). Se o campo isca vier preenchido ou o envio acontecer em menos de 4 segundos, o visitante vê a confirmação, mas nada é enviado. Quando o formulário for integrado, o servidor que recebe os pedidos precisa repetir as duas checagens.
 
 ## Pendências antes do lançamento
 
 - [ ] **Depoimentos reais.** Os três atuais são exemplos e estão marcados no código.
 - [x] **E-mail definitivo.** `dgpconstruction25@gmail.com`.
-- [ ] **Integração do formulário.** Hoje ele só exibe a confirmação; o ponto de envio está marcado com `TODO` em `assets/js/main.js`. Campos: `service`, `town`, `message`, `name`, `phone`, `email`.
+- [x] **Integração do formulário** (`form01`). Cada pedido vai em paralelo para o Web3Forms (e-mail) e para o webhook de leads da Eu Sou TS; a confirmação aparece se ao menos um aceitar, e se os dois falharem o visitante vê uma mensagem com o SMS. Envia `service`, `name`, `phone`, `email`, `town`, `message`, página, data e os parâmetros `utm_*`, `gclid` e `fbclid` da URL. As credenciais ficam em `assets/js/config.js`, que não é publicado neste repositório: para rodar o formulário, copie `assets/js/config.example.js` para `config.js` e preencha a chave do Web3Forms e a URL do webhook.
 - [ ] **Link de avaliação do Google.** O botão *Share your experience* aponta para uma busca até o Google Business Profile existir.
-- [ ] **Política de privacidade**, já que o formulário coleta dados de contato.
-- [ ] **Consentimento de cookies** quando o Meta Pixel e a tag do Google Ads forem instalados.
+- [x] **Política de privacidade e termos de uso.** Páginas `privacy-policy.html` e `terms-of-use.html`, linkadas no rodapé e no formulário. São um rascunho fiel ao que o site faz hoje; revisar com um advogado antes do lançamento.
+- [ ] **Atualizar a política** quando o Meta Pixel ou a tag do Google Ads forem instalados, junto com um aviso de cookies. O formulário já dispara `generate_lead` e `Lead` automaticamente quando essas tags existirem.
 - [ ] **Imagens geradas.** A imagem do card *Window Installation* e o fundo de *Why us* são ilustrativos, não obras da DGP. Substituir por fotos reais quando houver.
 
 ## Créditos

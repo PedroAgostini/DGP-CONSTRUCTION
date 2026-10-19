@@ -1,0 +1,21 @@
+/* TEAM */
+Client: DGP Construction LLC
+Location: Danbury, Connecticut, USA
+Contact: dgpconstruction25@gmail.com
+
+Design and development: Eu Sou TS
+Site: https://eusouts.com.br/
+Location: Brazil
+
+/* THANKS */
+Project photography: DGP Construction project archive
+Icons: Phosphor Icons (MIT)
+Typefaces: Archivo and Martian Mono (SIL Open Font License)
+
+/* SITE */
+Last update: 2026/10/19
+Language: English (US)
+Doctype: HTML5
+Standards: HTML5, CSS3, JavaScript
+Software: hand-coded static site, no framework, no build step
+Hosting: Hostinger
