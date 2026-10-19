@@ -474,6 +474,9 @@ h3 { font-weight: 800; font-stretch: 118%; font-size: clamp(1.2rem, 1rem + .6vw,
 .form-nav .btn { min-height: 60px; }
 .form-nav .btn-gold { flex: 1; }
 .form-nav .btn[hidden] { display: none; }
+/* the form is a light card inside the dark section: keep Back in ink */
+.sheet-dark .quote-form .btn-line { --b: var(--ink); color: var(--ink); }
+.sheet-dark .quote-form .btn-line:hover { background: var(--ink); color: var(--paper); }
 .form-fine { margin: 14px 0 0; font-size: .8rem; color: var(--ink-3); }
 
 .form-done { position: absolute; inset: 0; background: var(--white); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px; padding: clamp(22px, 4vw, 56px); }
