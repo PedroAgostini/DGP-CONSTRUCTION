@@ -1,0 +1,28 @@
+/* Thanksgiving hero (seasonal). Remove this file, its <link> and the .hero--holiday markup to restore the regular hero. */
+section.hero--holiday {
+  --art: 77vw; /* height of the artwork at the bottom of the phone banner */
+  position: relative; isolation: isolate; overflow: hidden;
+  display: block; min-height: 0; height: auto; margin: 0;
+  background: #2A2723; color: #fff;
+  padding: 96px 20px calc(var(--art) + 20px);
+  text-align: center;
+}
+section.hero--holiday::before, section.hero--holiday::after { content: none; display: none; }
+.hero--holiday .holiday-bg img { position: absolute; left: 0; bottom: 0; z-index: -1; display: block; width: 100%; height: auto; max-width: none; }
+.hero--holiday .holiday-copy { position: relative; display: grid; justify-items: center; gap: 18px; max-width: 520px; margin: 0 auto; padding: 0; text-align: center; }
+.hero--holiday .holiday-title { margin: 0; max-width: none; font-family: var(--f-text); font-weight: 800; text-transform: none; font-stretch: 125%; font-variation-settings: "wdth" 125; font-size: clamp(2rem, 1rem + 4.6vw, 3rem); line-height: 1.04; letter-spacing: -.01em; color: #fff; text-wrap: balance; }
+.hero--holiday .holiday-sub { margin: 0; max-width: 38ch; font-family: var(--f-text); font-weight: 400; font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,.88); text-wrap: balance; }
+
+@media (min-width: 1024px) {
+  /* the whole banner fits the first screen */
+  section.hero--holiday { display: grid; grid-template-columns: 1fr; align-items: center; justify-items: start; place-content: center start; height: min(41.667vw, 100svh); min-height: 0; padding: 86px 6vw 0; text-align: left; }
+  .hero--holiday .holiday-bg img { inset: 0; height: 100%; object-fit: cover; object-position: 50% 100%; }
+  .hero--holiday .holiday-copy { justify-items: start; gap: clamp(14px, 1.3vw, 24px); margin: 0; max-width: 42vw; text-align: left; }
+  /* two lines for the headline, two for the sub */
+  .hero--holiday .holiday-title { font-size: 3.6vw; }
+  .hero--holiday .holiday-title .tl { display: block; white-space: nowrap; }
+  .hero--holiday .holiday-sub { font-size: clamp(.9rem, 1.1vw, 1.4rem); max-width: 33vw; text-wrap: balance; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero--holiday .holiday-sub { font-size: .8rem; max-width: 40vw; }
+}

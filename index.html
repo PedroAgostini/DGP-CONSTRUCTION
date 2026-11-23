@@ -26,8 +26,10 @@
   <meta name="twitter:image" content="https://dgpconstructionusa.com/assets/img/og-image.jpg">
 
   <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/dgp-timber-pavilion.webp" as="image" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/holiday/thanksgiving-mobile.webp" media="(max-width: 1023px)">
+  <link rel="preload" as="image" href="assets/img/holiday/thanksgiving-desktop.webp" media="(min-width: 1024px)">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/holiday.css?v=20261123">
   <script>
     (function (d) {
       if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("js-draft");
@@ -87,23 +89,16 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true">
-        <!-- Selected photograph from the client-provided Google Drive; see docs/images/SELECTION.json. -->
-        <img src="assets/img/dgp-timber-pavilion.webp" alt="" width="1365" height="635" fetchpriority="high">
-      </div>
-      <div class="wrap hero-inner">
-        <h1 id="hero-title"><span class="h1-main">Custom finish carpentry &amp; trim work</span> <span class="h1-accent">in Danbury, CT</span></h1>
-        <p class="lede">Fully licensed, insured, and on-schedule professional millwork, custom trim installation, and interior carpentry services.</p>
-        <ul class="hero-proof" aria-label="What you get">
-          <li>Licensed &amp; insured</li>
-          <li>24-hour quote</li>
-          <li>Danbury + 30 miles</li>
-        </ul>
-        <div class="hero-actions">
-          <a class="btn btn-gold btn-hero" href="#quote"><span>Get your 24-hour quote</span><span class="btn-ico" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span></a>
-          <a class="btn btn-ghost" href="sms:+19145380739"><svg class="ico" aria-hidden="true"><use href="#i-chat-text"/></svg>Text (914) 538-0739</a>
-        </div>
+    <!-- Thanksgiving banner (seasonal) -->
+    <section class="hero hero--holiday" id="hero" aria-labelledby="hero-title">
+      <picture class="holiday-bg">
+        <source media="(min-width: 1024px)" srcset="assets/img/holiday/thanksgiving-desktop.webp" width="1920" height="800">
+        <img src="assets/img/holiday/thanksgiving-mobile.webp" alt="" width="1080" height="2850" fetchpriority="high">
+      </picture>
+      <div class="holiday-copy">
+        <h1 id="hero-title" class="holiday-title"><span class="tl">Trim Worth A</span> <span class="tl">Second Look</span></h1>
+        <p class="holiday-sub">No gaps, no caulk, just gratitude: thank you, Danbury, for a great year; your winter trim quote arrives within 24 hours.</p>
+        <a class="btn btn-gold btn-hero" href="#quote"><span>Quote My Winter Trim</span><span class="btn-ico" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span></a>
       </div>
     </section>
 
